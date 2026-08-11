@@ -1,0 +1,308 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #0f1115;
+  color: #f2f2f2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ============ CALL STAGE ============ */
+
+.call-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* better on Android Chrome with dynamic toolbars */
+  background: #000;
+  overflow: hidden;
+}
+
+#remoteVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+.remote-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  color: #9aa0a6;
+  font-size: 1rem;
+  background: radial-gradient(circle at 50% 40%, #1a1d24 0%, #0f1115 70%);
+}
+
+.remote-placeholder[hidden] {
+  display: none;
+}
+
+/* ============ LOCAL FLOATING PREVIEW ============ */
+
+.local-video-wrapper {
+  position: absolute;
+  top: 70px;
+  right: 12px;
+  width: 110px;
+  height: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: #1a1d24;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  transition: opacity 0.2s ease;
+}
+
+.local-video-wrapper.hidden-preview {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#localVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* ============ TOP BAR ============ */
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 6;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+}
+
+.status-pill,
+.timer-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.status-pill {
+  background: rgba(58, 63, 74, 0.75);
+  color: #f2f2f2;
+}
+
+.status-pill.status-connected {
+  background: rgba(45, 164, 92, 0.85);
+}
+
+.status-pill.status-connecting {
+  background: rgba(242, 201, 76, 0.85);
+  color: #1a1d24;
+}
+
+.status-pill.status-failed {
+  background: rgba(224, 82, 96, 0.9);
+}
+
+.timer-pill {
+  background: rgba(0, 0, 0, 0.4);
+  color: #f2f2f2;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-pill[hidden] {
+  display: none;
+}
+
+/* ============ MESSAGE BOX ============ */
+
+.message-box {
+  position: absolute;
+  top: 60px;
+  left: 12px;
+  right: 12px;
+  z-index: 6;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #f2c94c;
+  min-height: 0;
+  word-break: break-word;
+}
+
+.message-box:empty {
+  display: none;
+}
+
+.message-box.message-error {
+  color: #ff8a93;
+}
+
+/* ============ SETUP PANEL ============ */
+
+.setup-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  padding: 16px 16px calc(20px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35) 70%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setup-panel[hidden] {
+  display: none;
+}
+
+.field-label {
+  font-size: 0.8rem;
+  color: #c7cad1;
+  margin-top: 4px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #3a3f4a;
+  background: #1a1d24;
+  color: #f2f2f2;
+  font-size: 0.95rem;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #3d8bfd;
+}
+
+.setup-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ============ BUTTONS (shared with Phase 1 style language) ============ */
+
+.btn {
+  padding: 14px 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.05s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background: #3d8bfd;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: #2a2e37;
+  color: #f2f2f2;
+}
+
+/* ============ CALL CONTROLS (in-call bottom bar) ============ */
+
+.call-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  padding: 18px 16px calc(24px + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35) 70%, transparent);
+}
+
+.call-controls[hidden] {
+  display: none;
+}
+
+.control-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(42, 46, 55, 0.9);
+  color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.05s ease, background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:active {
+  transform: scale(0.94);
+}
+
+.control-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.control-btn-end {
+  background: #e05260;
+  width: 66px;
+}
+
+.control-btn.control-btn-off {
+  background: rgba(224, 82, 96, 0.85);
+}
+
+/* ============ RESPONSIVE: larger screens ============ */
+
+@media (min-width: 640px) {
+  .call-stage {
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  }
+
+  body {
+    overflow: auto;
+  }
+}

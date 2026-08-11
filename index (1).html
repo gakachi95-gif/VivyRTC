@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VivyRTC — Video Call</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="call-stage">
+
+    <!-- Remote video fills the whole stage -->
+    <video id="remoteVideo" playsinline autoplay></video>
+
+    <div id="remotePlaceholder" class="remote-placeholder">
+      <p id="remotePlaceholderText">Start your camera to begin</p>
+    </div>
+
+    <!-- Local video floats in the corner -->
+    <div class="local-video-wrapper" id="localVideoWrapper">
+      <video id="localVideo" playsinline autoplay muted></video>
+    </div>
+
+    <!-- Top status bar -->
+    <div class="top-bar">
+      <span id="statusText" class="status-pill">Idle</span>
+      <span id="callTimer" class="timer-pill" hidden>00:00</span>
+    </div>
+
+    <!-- Error / info messages -->
+    <div id="messageBox" class="message-box" role="status"></div>
+
+    <!-- Setup panel: shown before a call is active -->
+    <div id="setupPanel" class="setup-panel">
+      <button id="startCameraBtn" class="btn btn-primary btn-block">Start Camera</button>
+
+      <label for="callIdInput" class="field-label">Call ID</label>
+      <input id="callIdInput" class="text-input" type="text" placeholder="e.g. vivy-room-1" autocomplete="off">
+
+      <div class="setup-buttons">
+        <button id="createCallBtn" class="btn btn-secondary" disabled>Create Call</button>
+        <button id="joinCallBtn" class="btn btn-secondary" disabled>Join Call</button>
+      </div>
+    </div>
+
+    <!-- Call controls: shown during an active call -->
+    <div id="callControls" class="call-controls" hidden>
+      <button id="micBtn" class="control-btn" aria-label="Mute microphone">
+        <span class="control-icon">🎤</span>
+      </button>
+      <button id="cameraBtn" class="control-btn" aria-label="Turn camera off">
+        <span class="control-icon">📹</span>
+      </button>
+      <button id="endCallBtn" class="control-btn control-btn-end" aria-label="End call">
+        <span class="control-icon">☎</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
