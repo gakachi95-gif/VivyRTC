@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VivyRTC Camera Test</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>VivyRTC Camera Test</h1>
+    <p class="subtitle">Local camera &amp; microphone test (no calling yet)</p>
+  </header>
+
+  <main class="app-main">
+
+    <div class="video-wrapper">
+      <video id="localVideo" playsinline autoplay muted></video>
+      <div id="placeholder" class="placeholder">
+        <p>Camera preview will appear here</p>
+      </div>
+    </div>
+
+    <div id="statusBox" class="status-box" role="status"></div>
+
+    <div class="controls">
+      <button id="startBtn" class="btn btn-primary">Start Camera</button>
+      <button id="stopBtn" class="btn btn-danger" disabled>Stop Camera</button>
+      <button id="muteBtn" class="btn btn-secondary" disabled>Mute Microphone</button>
+      <button id="cameraOffBtn" class="btn btn-secondary" disabled>Turn Camera Off</button>
+      <button id="switchBtn" class="btn btn-secondary" disabled>Switch Camera</button>
+    </div>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>VivyLive &mdash; Stage 1: Camera/Mic Test</p>
+  </footer>
+
+  <script src="camera.js"></script>
+</body>
+</html>
